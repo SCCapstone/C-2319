@@ -13,14 +13,14 @@ class RegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['first_name' , 'last_name' , 'username' , 'email' , 'password1' , 'password2']
+        fields = [ 'username' , 'email' , 'password1' , 'password2']
 
     def save(self, commit=True):
         # user = super(RegisterForm, self).save(commit=False)
         user = super().save(commit=False)
         user.email = self.cleaned_data['email']
-        user.first_name = self.cleaned_data['first_name']
-        user.last_name = self.cleaned_data['last_name']
+        # user.first_name = self.cleaned_data['first_name']
+        # user.last_name = self.cleaned_data['last_name']
 
         if commit:
             user.save()
@@ -30,7 +30,7 @@ class UserProfileForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ( 'age' , 'occupation' ,)
+        fields = ('first_name' , 'last_name' , 'age' , 'occupation' ,)
 
     # def save(self, commit=True):
     #     user = super().save(commit=False)

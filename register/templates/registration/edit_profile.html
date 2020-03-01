@@ -3,11 +3,12 @@
 {% block title %}Create an Account {% endblock %}
 {% block content %}
 <br><br><br><br><br>
-
-  <form method="POST" class="form-group">
+<div class="container">
+  <form method="POST">
     {% csrf_token %}
-    {{ profile_form.as_p}}
     {{ form.as_p }}
-    <button type="submit" class="btn btn-success"> register </button>
+    <button class="btn btn-success" type="submit">Save</button>
   </form>
+  <br>
+</div>
 {% endblock %}

@@ -4,7 +4,7 @@ from .forms import UserProfileForm
 from django.views.generic import DetailView
 from .models import UserProfile
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import UserChangeForm
 
 
 def register(response):
@@ -31,10 +31,19 @@ def register(response):
     return render(response, 'register/register.html' , context)
 
 
-# class ProfileView(DetailView):
-#         model = UserProfile
-#         template_name = 'registration/profilepage.html'
+def edit_profile(response, pk=None):
+    if response.method == 'POST':
+        form = UserChangeForm(response.POST , instance=response.user)
+        if form.is_valid():
+            form.save()
+            return redirect('/account/profile')
+    else:
+        form = UserChangeForm(instance=response.user)
+        context = {'form' : form}
+        return render(response, 'registration/edit_profile.html' , context)
 
-def profile(response):
+
+
+def view_profile(response):
     args = {'user' : response.user}
     return render (response, 'registration/profile.html' , args)
