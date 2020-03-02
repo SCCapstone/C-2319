@@ -4,13 +4,21 @@
 {% if user.is_authenticated %}
   <h1>My Items</h1>
   <br>
-    {% for post in object_list %}
-      {% if post.publish == 1 %}
-            <ul>
-              <li><a href="{{ post.pk }}"><p id="element1">{{ post.title }}  </p><p id="element2">,  ${{ post.price }}</p><p id="element3"> , {{ post.get_condition_display }}</p</a></li>
-            </ul>
-      {% endif %}
-    {% endfor %}
+
+  <form method="GET" action="{% url 'search' %}">
+    <input name="q" value="{{ request.GET.q }}" placeholder="search..">
+    <button class="btn-success" type="submit">Search</button>
+  </form>
+
+  <br>
+
+  {% for post in object_list %}
+    {% if post.publish == 1 %}
+          <ul>
+            <li><a href="{{ post.pk }}"><p id="element1">{{ post.title }}  </p><p id="element2">,  ${{ post.price }}</p><p id="element3"> , {{ post.get_condition_display }}</p</a></li>
+          </ul>
+    {% endif %}
+  {% endfor %}
 
 {% else %}
   <p>You are not allowed to see this list</p>

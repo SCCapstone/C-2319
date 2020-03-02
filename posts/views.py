@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import PostForm
 from django.shortcuts import render , get_object_or_404 , redirect
 from django.views.generic import ListView, DetailView
+from django.db.models import Q
 from .models import Post
 
 # Create your views here.
@@ -58,5 +59,12 @@ def delete_post(request, pk=None):
     return redirect('/post/')
     # return render (request, '../templates/post_list.html' , {'form' : form})
 
-
-    
+def search(request):
+    template = '../templates/forsale.html'
+    query = request.GET.get('q')
+    #if query exists, filter Posts by query, if query is empty, just post all objects that were published
+    if query:
+        results = Post.objects.filter(Q(title__icontains=query) | Q(body__icontains=query))
+    else:
+        results = Post.objects.filter(status="Publish")
+    return render (request, template)

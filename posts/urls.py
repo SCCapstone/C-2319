@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from . import views
-from .views import PostDetailView, PostListView, ForSaleListView
+from .views import PostDetailView, PostListView, ForSaleListView, search
 from django.urls import path , re_path
 
 
@@ -10,5 +10,6 @@ urlpatterns = [
     path('', PostListView.as_view(), name='post_list'),
     url(r'^edit/(?P<pk>\d+)/$' , views.edit_post, name = 'edit_post'),
     path('forsale' , ForSaleListView.as_view(), name='for_sale'),
+    url(r'^results/$', search, name="search"),
     url(r'^delete/(?P<pk>\d+)/$' , views.delete_post, name = 'delete_post'),
     ]

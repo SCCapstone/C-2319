@@ -3,9 +3,9 @@
 <html>
 <head>
   <style type="text/css">
-  #element1 {float:left; color:green;}
-  #element2 {float:left; color:SlateBlue;}
-  #element3 {float:left; color:Tomato;}
+    #element1 {float:left; color:green;}
+    #element2 {float:left; color:SlateBlue;}
+    #element3 {float:left; color:Tomato;}
   </style>
 
 	<!-- Required meta tags -->
@@ -17,36 +17,46 @@
 </head>
 <body>
 	<header class="site-header">
-	  <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
-		<div class="container">
-		  <a class="navbar-brand mr-4" href="{% url 'home' %}">College Market</a>
-		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-		  <span class="navbar-toggler-icon"></span>
-		  </button>
 
-		  <div class="collapse navbar-collapse" id="navbarToggle">
-			<div class="navbar-nav mr-auto">
-			  <a class="nav-item nav-link" href="{% url 'home' %}">Home</a>
-        <a class="nav-item nav-link" href="{% url 'about' %}">About</a>
+	  <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+  		<div class="container">
+  		  <a class="navbar-brand mr-4" href="{% url 'home' %}">College Market</a>
+  		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+  		      <span class="navbar-toggler-icon"></span>
+  		  </button>
+
+  		  <div class="collapse navbar-collapse" id="navbarToggle">
+  			<div class="navbar-nav mr-auto">
+  			  <a class="nav-item nav-link" href="{% url 'home' %}">Home</a>
+          <a class="nav-item nav-link" href="{% url 'about' %}">About</a>
+          {% if user.is_authenticated %}
+          <a class="nav-item nav-link" href="{% url 'for_sale' %}">Items for sale</a>
+          {% endif %}
+  			</div>
+
+        <!-- search button for navbar -->
+        <div class="search-bar mt-sm-2 mr-2">
+          <form class="form-inline" method="get" actino="{% url 'search' %}">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" name="q" value="{{ request.GET.q }}">
+            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+        
         {% if user.is_authenticated %}
-        <a class="nav-item nav-link" href="{% url 'for_sale' %}">Items for sale</a>
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="{% url 'add_post' %}">New Posts</a>
+          <a class="nav-item nav-link" href="{% url 'post_list' %}">My Posts</a>
+          <!-- <a class="nav-item nav-link" href="/profilepage">My Profile</a> -->
+          <a class="nav-item nav-link" href="/logout">Logout</a>
+  			</div>
+        {% else %}
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="/login">Login</a>
+          <a class="nav-item nav-link" href="/register">Register</a>
+  			</div>
         {% endif %}
-			</div>
-      {% if user.is_authenticated %}
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" href="{% url 'add_post' %}">New Posts</a>
-        <a class="nav-item nav-link" href="{% url 'post_list' %}">My Posts</a>
-        <a class="nav-item nav-link" href="{% url 'profile' %}">My Profile</a>
-        <a class="nav-item nav-link" href="/logout">Logout</a>
-			</div>
-      {% else %}
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" href="/login">Login</a>
-        <a class="nav-item nav-link" href="/register">Register</a>
-			</div>
-      {% endif %}
-		  </div>
-		</div>
+  		  </div>
+  		</div>
 	  </nav>
 	</header>
 	<main role="main" class="container">
