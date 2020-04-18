@@ -3,6 +3,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from .models import UserProfile
+from django.core.exceptions import ValidationError
 
 
 class RegisterForm(UserCreationForm):
@@ -19,6 +20,7 @@ class RegisterForm(UserCreationForm):
         # user = super(RegisterForm, self).save(commit=False)
         user = super().save(commit=False)
         user.email = self.cleaned_data['email']
+        
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
 

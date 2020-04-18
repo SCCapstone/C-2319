@@ -6,6 +6,7 @@ from .forms import(
     EditProfileFormCustme,
     RemoveUser,
 )
+from django import forms
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash , get_user_model , login
 from .models import UserProfile
@@ -13,7 +14,11 @@ from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
+from django.core.exceptions import ValidationError
+from django.http import HttpResponseRedirect
+import re
 
+EMAIL_REGEX = r'\w+@\.edu'
 
 
 
@@ -23,6 +28,11 @@ def register(response):
         profile_form = UserProfileForm(response.POST)
         if form.is_valid() and profile_form.is_valid():
             # form.save()
+            n = form.cleaned_data["email"]
+            if not n.endswith('.edu'):
+                # raise forms.ValidationError('Only .edu email addresses allowed')
+                messages.success(response, 'Only .edu email addresses allowed! Please try again with a valid email address.', extra_tags='email_not_edu')
+                return redirect('/register')
             user = form.save()
             profile = profile_form.save(commit=False)
             profile.user = user
