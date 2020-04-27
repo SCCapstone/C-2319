@@ -43,8 +43,7 @@ INSTALLED_APPS = [
     'sendemail.apps.SendemailConfig',
     'crispy_forms',
     'django_filters',
-    'bootstrapform',
-    'six',
+    'bootstrapform'
 ]
 
 MIDDLEWARE = [

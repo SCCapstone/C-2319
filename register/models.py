@@ -11,18 +11,8 @@ JOB = (
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-<<<<<<< HEAD
     location = models.CharField(max_length=30, default=0, blank=True, null=True)
     age = models.IntegerField(null=False, blank=False)
-=======
-    # location = models.CharField(max_length=30, default=0, blank=True, null=True)
-    street_address_1 = models.CharField(max_length=30, default='', blank=True, null=True)
-    street_address_2 = models.CharField(max_length=30, default='', blank=True, null=True)
-    city = models.CharField(max_length=30, default='', blank=True, null=True)
-    state = models.CharField(max_length=30, default='', blank=True, null=True)
-    zip = models.IntegerField(default='', blank=True, null=True, validators=[MaxValueValidator(100000)])
-    age = models.IntegerField(null=False, blank=False, validators=[MinValueValidator(16) , MaxValueValidator(150)])
->>>>>>> 4f08e87c227ebb93bd743aa1c41f599e1bfd38f3
     occupation = models.IntegerField(choices=JOB , default = 4)
     #first_name = models.CharField(max_length=30, null=False, blank=False)
     #last_name = models.CharField(max_length=150, null=False, blank=False)

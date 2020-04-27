@@ -30,27 +30,14 @@ class UserProfileForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-<<<<<<< HEAD
         fields = [ 'age' , 'occupation' , 'location']
-=======
-        fields = [ 'age' , 'occupation' , 'street_address_1' , 'street_address_2' , 'city' , 'state' , 'zip']
->>>>>>> 4f08e87c227ebb93bd743aa1c41f599e1bfd38f3
 
     def save(self, commit=True):
         # user = super(RegisterForm, self).save(commit=False)
         userprofile = super().save(commit=False)
         userprofile.age = self.cleaned_data['age']
         userprofile.occupation = self.cleaned_data['occupation']
-<<<<<<< HEAD
         userprofile.location = self.cleaned_data['location']
-=======
-        # userprofile.location = self.cleaned_data['location']
-        userprofile.street_address_1 = self.cleaned_data['street_address_1']
-        userprofile.street_address_2 = self.cleaned_data['street_address_2']
-        userprofile.state = self.cleaned_data['state']
-        userprofile.city = self.cleaned_data['city']
-        userprofile.zip = self.cleaned_data['zip']
->>>>>>> 4f08e87c227ebb93bd743aa1c41f599e1bfd38f3
         if commit:
             userprofile.save()
         return userprofile
@@ -70,27 +57,14 @@ class EditProfileForm(UserChangeForm):
 class EditProfileFormCustme(forms.ModelForm):
     class Meta:
         model = UserProfile
-<<<<<<< HEAD
         fields = [ 'age' , 'occupation' , 'location']
-=======
-        fields = [ 'age' , 'occupation' , 'street_address_1' , 'street_address_2' , 'city' , 'state' , 'zip']
->>>>>>> 4f08e87c227ebb93bd743aa1c41f599e1bfd38f3
 
     def save(self, commit=True):
         # user = super(RegisterForm, self).save(commit=False)
         userprofile = super().save(commit=False)
         userprofile.age = self.cleaned_data['age']
         userprofile.occupation = self.cleaned_data['occupation']
-<<<<<<< HEAD
         userprofile.location = self.cleaned_data['location']
-=======
-        # userprofile.location = self.cleaned_data['location']
-        userprofile.street_address_1 = self.cleaned_data['street_address_1']
-        userprofile.street_address_2 = self.cleaned_data['street_address_2']
-        userprofile.city = self.cleaned_data['city']
-        userprofile.state = self.cleaned_data['state']
-        userprofile.zip = self.cleaned_data['zip']
->>>>>>> 4f08e87c227ebb93bd743aa1c41f599e1bfd38f3
         if commit:
             userprofile.save()
         return userprofile

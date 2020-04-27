@@ -59,3 +59,8 @@ $ python manage.py collectstatic
 * Edit items
 * Send messages to sellers
 * Share items
+
+
+##
+
+
