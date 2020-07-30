@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'home',
+    'home.apps.HomeConfig',
     'posts.apps.PostsConfig',
     'register.apps.RegisterConfig',
     'sendemail.apps.SendemailConfig',

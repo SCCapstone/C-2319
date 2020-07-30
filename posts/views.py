@@ -2,11 +2,15 @@ from django.shortcuts import render
 from .forms import PostForm
 from django.shortcuts import render , get_object_or_404 , redirect
 from django.views.generic import ListView, DetailView
+from home.models import Item
 from .models import Post
 from django.core.mail import send_mail
 from django.conf import settings
 from .filters import PostFilter
 from django.contrib import messages
+from home.views import (remove_from_cart,
+             add_to_cart,ProductView, HomeView
+                    )
 
 
 # Create your views here.
@@ -26,7 +30,9 @@ def add_post(request):
             d = form.cleaned_data["body"]
             e = form.cleaned_data["publish"]
             t = Post(title=n, body=d , price=c, condition=b , category=a, cover=m, publish=e)
+            i = Item(item_name=n, body=d , price=c, condition=b , category=a, cover=m, post = t)
             t.save()
+            i.save()
             request.user.post.add(t)
             messages.success(request, 'Your new item was created successfully!', extra_tags='add')
             return redirect('/post/')
