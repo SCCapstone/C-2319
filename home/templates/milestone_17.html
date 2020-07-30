@@ -1,4 +1,13 @@
 {% extends 'base.html' %}
+<head>
+    <style>
+        #wrapper {
+    width: 920px;
+    height: 350px;
+    margin: 0 auto;
+}
+    </style>
+</head>
 {% block content %}
 <br><br><br>
 
@@ -7,10 +16,16 @@
     <h3 class="w3-center">MILESTONE #17 - VIDEO AND WEBSITE</h3>
     <p class="w3-center w3-large">Because our project is a website, we have decided to share the video and images here for you to enjoy.</p>
     <p class="w3-center w3-large"><a href="{% url 'about' %}">Click here to go to the About Page</a></p>
+    <div id="wrapper">
     <div class="w3-row-padding w3-large" style="margin-top:64px">
         <h2>Video:</h2>
-        <iframe src="https://www.youtube.com/embed/Wa-awA6MWlw" style="float:center; width: 400px; height: 250px; min-width: 100px;" allowfullscreen>
+        <iframe src="https://www.youtube.com/embed/Wa-awA6MWlw" style="float:right; width: 400px; height: 250px; min-width: 100px;" allowfullscreen>
         </iframe>
+    </div>
+    <div class="w3-row-padding w3-large" style="margin-top:64px">
+        <h2>Video:</h2>
+      <iframe width="884" height="497" src="https://www.youtube.com/embed/MYmbKQGSj8g" style="float:right; width: 400px; height: 250px; min-width: 100px;" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
     </div>
     <div class="w3-row-padding w3-large" style="margin-top:64px" id="milestone">
         <h2>Images:</h2><br>
