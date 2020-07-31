@@ -2,7 +2,7 @@
 
 This is our capstone project for CSCE 490 and CSCE 492.
 
-Link to our web - [http://c2319.pythonanywhere.com](http://c2319.pythonanywhere.com)
+Link to our web - [http://jlmilton.pythonanywhere.com](http://jlmilton.pythonanywhere.com)
 
 In order to use the web, you must be login to your account.
 
