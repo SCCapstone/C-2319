@@ -91,14 +91,17 @@
                 <h4>{{ user.userprofile.get_occupation_display }}</h4>
             </div><br><br><br>
             <div id="same-line-1">
-              <a type="button" class="btn btn-outline-success" href="{% url 'edit_profile' %}">Edit Profile</a>
+              <a type = "button" class="btn btn-outline-success" href = "{% url 'edit_profile' %}">Edit Profile</a>
             </div>
             <div id="same-line-2">
-              <a type="button" class="btn btn-outline-primary" href="{% url 'change_password' %}">Change Password</a>
+              <a type = "button" class = "btn btn-outline-primary" href = "{% url 'change_password' %}">Change Password</a>
             </div>
-            <div id="same-line-2">
+            <div id = "same-line-3">
+              <a type="button" class = "btn btn-outline-danger" href = "{% url 'remove_user' %}">Delete Account</a>
+            </div>
+            <!-- <div id="same-line-2">
               <!-- <a type="button" class="btn btn-outline-danger" href="{% url 'remove_user'  %}">Delete</a> -->
-            </div>
+            <!-- </div> -->
           </div>
         </div>
       </div>
