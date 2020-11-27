@@ -22,6 +22,9 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from .tokens import account_activation_token
 
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+
 
 def register(response):
     if response.method == "POST":
@@ -119,17 +122,25 @@ def edit_profile(response , pk=None):
     context = {'form_e' : form_e , 'profile_form_e' : profile_form_e , 'user_edit' : user_edit}
     return render(response, 'registration/edit_profile.html' , context)
 
-def remove_user(response , pk=None):
-    if response.method == 'POST':
-        item = get_object_or_404(User , pk=pk)
-        rem = User.objects.get(username=form.cleaned_data['username'])
-        User.delete()
-        return redirect('/post/')
+@login_required
+def remove_user(request):
+    if request.method == 'POST':
+        form = RemoveUser(request.POST)
+        #user1 = User.objects.get(username=request.user.username)
+        user1 = request.user
+        messages.info(request, "Your account has been deleted :)")
+        logout(request)
+        user1.delete()
+#    if response.method == 'POST':
+#        item = get_object_or_404(User , pk=pk)
+#        rem = User.objects.get(username=form.cleaned_data['username'])
+#        User.delete()
+#        return redirect('/post/')
 
     else:
         form = RemoveUser()
     context = {'form': form}
-    return render(response, 'registration/remove_user.html', context)
+    return render(request, 'registration/remove_user.html', context)
 
 
 
@@ -154,4 +165,5 @@ def change_password(response):
 def view_profile(response):
     storage = messages.get_messages(response)
     args = {'user' : response.user , 'message' : storage}
+
     return render (response, 'registration/profile.html' , args)

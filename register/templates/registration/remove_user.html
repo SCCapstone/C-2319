@@ -4,15 +4,42 @@
 {% block content %}
 <br><br><br><br><br>
 {% if user.is_authenticated %}
-    <div class="container">
-      <button class="btn btn-success" type="submit" value="save">Save</button>
-      <a type="button" class="btn btn-outline-danger" href="{% url 'remove_user' %}">Delete</a>
-      <br>
+<h2>Delete your account</h2>
+<hr>
+<form method="POST">
+    {% csrf_token %}
+        <p>Are you sure you want to delete your account?  This will permanently delete your
+        profile and any content you have generated.</p>
+    <div id = "same-line-1">
+        <button class="btn btn-danger" type="submit">Delete Account</button>
     </div>
+    <div id = "same-line-2">
+            <!-- <button class="btn btn-primary-custom"
+               href="{% url 'view_profile' %}">Cancel</button> -->
+      <a type = "button" class="btn btn-primary mb1 bg-blue"
+           href = "{% url 'view_profile' %}">Cancel</a>
+    </div>
+</form>
+
+<!-- <form action="." method="POST" class="padding">{% csrf_token %}
+    {{ user_form.as_p}}
+    <button onclick="location.href = '/pageurl'" class="btn btn-primary" type="submit" name="action">Save</button>
+  </form> -->
+
 
 {% else %}
-  <h3>You are not allowed to see this post</h3><br>
-  <h1>Redirect...</h1>
+  <!-- <h3>You are not allowed to see this post</h3><br>
+  <h1>Redirect...</h1> -->
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <h1 class="{{ message.tags }}">{{ message }}</h1>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  <br></br><br></br>
+  <h1>  Redirecting to login page ... </h1>
   <meta http-equiv = "refresh" content = "3; url = {% url 'home' %}" />
 {% endif %}
 {% endblock %}
