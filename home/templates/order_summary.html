@@ -25,7 +25,7 @@
             <td>{{ order_item.item.item_name }}</td>
             <td>
             {% if order_item.item.discount_price %}
-                <del>${{ order_item.item.price}}</del> 
+                <del>${{ order_item.item.price}}</del>
                 ${{ order_item.item.discount_price }}
             {% else %}
                 ${{ order_item.item.price}}
@@ -39,7 +39,7 @@
             </td>
             <td>
             {% if order_item.item.discount_price %}
-                ${{ order_item.get_discount_item_price }} 
+                ${{ order_item.get_discount_item_price }}
                 <span class="badge badge-success" >Saved ${{ order_item.get_amount_saved }}</span>
             {% else %}
                 ${{ order_item.get_total_item_price}}
@@ -53,7 +53,7 @@
 
         {% empty %}
         <tr>
-            <td colspan="5">Your Cart Empity</td>
+            <td colspan="5">There are no items in your cart</td>
         </tr>
 
          <tr>
@@ -75,9 +75,9 @@
                 <a href="/" class="btn btn-primary float-right">Continue Shopping</a>
             </td>
         </tr>
-        
+
         {% endif %}
-        
+
         </tbody>
     </table>
 
