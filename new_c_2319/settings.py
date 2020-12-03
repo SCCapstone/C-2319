@@ -164,4 +164,4 @@ EMAIL_PORT = 587
 #EMAIL_HOST_PASSWORD = 'c-2319USC'
 #new stuff i made - works fine for me
 EMAIL_HOST_USER = 'collegemarket.c.2319@gmail.com'
-EMAIL_HOST_PASSWORD = 'mdyomncmzljnfwad'
+EMAIL_HOST_PASSWORD = 'htprzpmrofsedmds'

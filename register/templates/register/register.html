@@ -12,7 +12,7 @@
               <p class="{{ message.tags }}" id="message-center">{{ message }}</p>
           {% elif "email_not_uni" in message.tags %}
               <div class="alert alert-danger" id="" role="email_not_uni">
-              <p class="{{ message.tags }}" id="message-center">{{ message }}</p> 
+              <p class="{{ message.tags }}" id="message-center">{{ message }}</p>
           {% endif %}
       {% endfor %}
       </div>
@@ -42,7 +42,7 @@
         <h6>Password confirmation</h6>
         <h6>{{ form.password2 }}</h6>
       </div> -->
-  
+
             <div class="col-sm-14">
               <h6>{{ profile_form.age | as_crispy_field }}</h6>
               <h6>*must be older than 16</h6><br>
@@ -70,8 +70,10 @@
                 <h6>{{ profile_form.zip | as_crispy_field }}</h6>
               </div>
             </div>
-            <br>      
+            <br>
       <button type="submit" class="btn btn-success"> register </button>
+        <br></br>
+        <p>Already have an account? <a href="/register">Login here</p>
     </form>
   <div>
 </div>
