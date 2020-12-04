@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth import views
 from django.conf import settings  # new
 from django.conf.urls.static import static  # new
 from register import views as v
@@ -28,6 +29,13 @@ urlpatterns = [
     path('', include('django.contrib.auth.urls')),
     url(r'^account/', include('register.urls')),
     path('', include('sendemail.urls')), # new
+
+    #Reset Password Urls
+    url(r'^password_reset/$', views.PasswordResetView.as_view(), name='password_reset'),
+    url(r'^password_reset/done/$', views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+    url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    url(r'^reset/done/$', views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 
 ]
 if settings.DEBUG:

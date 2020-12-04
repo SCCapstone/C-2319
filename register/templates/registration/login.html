@@ -8,9 +8,13 @@
   <form method="post" class="form-group">
     {% csrf_token %}
     {{ form  | crispy}}
-    <p>Don't have an account? <a href="/register">Create one here</p>
-
+    <p style="text-align:left;">
+      <a href = "/password_reset">Forgot Password</a>
+      <span style="float:right;">
+        Don't have an account? <a href="/register">Create one here</p>
+      </span>
     <button type="submit" class="btn btn-success">Login</button>
+    </p>
   </form>
 
 
