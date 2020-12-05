@@ -30,7 +30,7 @@ class UserProfileForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = [ 'age' , 'occupation' , 'street_address_1' , 'street_address_2' , 'city' , 'state' , 'zip']
+        fields = [ 'age' , 'occupation' , 'street_address_1' , 'street_address_2' , 'city' , 'state' , 'zip', 'profile_pic']
 
     def save(self, commit=True):
         # user = super(RegisterForm, self).save(commit=False)
@@ -43,6 +43,9 @@ class UserProfileForm(forms.ModelForm):
         userprofile.state = self.cleaned_data['state']
         userprofile.city = self.cleaned_data['city']
         userprofile.zip = self.cleaned_data['zip']
+        if self.cleaned_data['profile_pic']:
+            userprofile.profile_pic = self.cleaned_data['profile_pic'];
+            
         if commit:
             userprofile.save()
         return userprofile

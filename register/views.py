@@ -68,8 +68,6 @@ def register(response):
             messages.success(response, 'We have sent you an email. Please confirm your email address to complete the registration', extra_tags='email_active')
             return redirect('/')
 
-
-
             # login(response , user)
 
             # subject = "Welcome to C-2319 (College Market)"
@@ -107,7 +105,7 @@ def edit_profile(response , pk=None):
 
     if response.method == 'POST':
         form_e = EditProfileForm(response.POST , instance=response.user)
-        profile_form_e = UserProfileForm(response.POST , instance=user_edit)
+        profile_form_e = UserProfileForm(response.POST, response.FILES, instance=user_edit)
         if form_e.is_valid() and profile_form_e.is_valid():
             user = form_e.save()
             profile = profile_form_e.save(commit=False)
@@ -160,10 +158,9 @@ def change_password(response):
         return render(response, 'registration/change_password.html', context)
 
 
+def view_profile(request):
+    user = request.user
+    storage = messages.get_messages(request)
 
-
-def view_profile(response):
-    storage = messages.get_messages(response)
-    args = {'user' : response.user , 'message' : storage}
-
-    return render (response, 'registration/profile.html' , args)
+    args = {'user' : request.user , 'message' : storage}
+    return render (request, 'registration/profile.html' , args)

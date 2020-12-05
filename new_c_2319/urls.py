@@ -21,6 +21,7 @@ from django.conf import settings  # new
 from django.conf.urls.static import static  # new
 from register import views as v
 
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     path('', include('home.urls')),
@@ -37,7 +38,11 @@ urlpatterns = [
         views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     url(r'^reset/done/$', views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 
-]
+] #+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+#static should use settings.MEDIA_URL, because media folder is where we'll save profile pictures
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
                           document_root=settings.MEDIA_ROOT)

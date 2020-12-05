@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-
 {% block title %}Edit Account {% endblock %}
 {% block content %}
 <br><br><br><br><br>
@@ -8,7 +7,7 @@
 <h2>You can edit your personal information here: <br><br><br></h2>
     <div class="container">
      <div class="card mb-4">
-      <form method="POST" class="form-group">
+      <form method="POST" enctype="multipart/form-data" class="form-group">
         {% csrf_token %}
         <!-- {{ profile_form_e | crispy}} -->
         <!-- {{ form_e  | crispy}} -->
@@ -58,6 +57,23 @@
                 <h4>Zip:</h4>
                 <h6>{{ profile_form_e.zip }}</h6>
             </div>
+        <br>
+
+        <div class="col-sm-4">
+
+           {% csrf_token %}
+           {{ profile_form_e.profile_pic }}
+
+        </div>
+        <!--
+        <div>
+          <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input class="btn btn-primary" type="submit" name="Update Information">
+          </form>
+        </div> -->
+
         <br>
             <div class="col-sm-4">
                 <button class="btn btn-success" type="submit" value="save" id="edit-pro">Save</button>

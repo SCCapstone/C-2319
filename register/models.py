@@ -21,11 +21,11 @@ class UserProfile(models.Model):
     zip = models.IntegerField(default='', blank=True, null=True, validators=[MaxValueValidator(100000)])
     age = models.IntegerField(null=False, blank=False, validators=[MinValueValidator(16) , MaxValueValidator(150)])
     occupation = models.IntegerField(choices=JOB , default = 4)
+    profile_pic = models.ImageField(upload_to='profile_images/', default='profile_images/blank-profile-picture-png.png', null=True, blank=True)
+    #image = models.ImageField(upload_to='images/profile_images', null=True , blank=True);
+
     #first_name = models.CharField(max_length=30, null=False, blank=False)
     #last_name = models.CharField(max_length=150, null=False, blank=False)
 
-
-
     def __str__(self):
         return self.user.username
-
